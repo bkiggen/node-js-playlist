@@ -1,27 +1,42 @@
 // var http = require('http');
 // var fs = require('fs');
 
+
+// 25  Template Engines
+
+
+
+
+
 // 23 EXPRESS (easier than 18-22)
 var express = require('express');
-
+var bodyParser = require('body-parser');
 var app = express();
 
+var urlencodedParser = bodyParser.urlencoded({ extended: false})
+
+app.set('view engine', 'ejs');
+
+app.use('/assets', express.static('assets'));
+
 app.get('/', function(req, res){
-  res.send('this is the homepage');
+  res.render('index');
 });
-app.get('/contact', function(req, res){
-  res.send('this is the contact page');
+
+app.get('/contact/', function(req, res){
+  res.render('contact', {qs: req.query});
 });
-app.get('/profile/:name/:id', function(req, res){ //:id for dynamic rendering
-  res.send('You wanna see this: ' + req.params.name + ' and ' + req.params.id);
+
+app.post('/contact/', urlencodedParser, function(req, res){
+  res.render('contact-success', {data: req.body});
+});
+
+app.get('/profile/:name', function(req, res){ //:id for dynamic rendering
+  var data = {age: 29, job: 'rodeo clown'};
+  res.render('profile', {person: req.params.name, data: data});
 });
 
 app.listen(3000);
-
-
-
-
-
 
 
 // 18 - 22
@@ -91,7 +106,7 @@ app.listen(3000);
 // fs.writeFile('./stuff/writeMe.txt', data);
 
 
-// fs.rmdirSync('shit'); // delete directory, synchornous
+// fs.rmdirSync('shit'); // delete directory, synchronous
 
 // // 9 Reading and Writing files:
 // var fs = require('fs');

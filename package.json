@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/bkiggen/node-js-playlist#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
     "express": "^4.13.4"
-  }
+  },
+  "devDependencies": {}
 }

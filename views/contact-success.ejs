@@ -23,7 +23,11 @@
     </style>
   </head>
   <body>
-    <h1>contact meeeeeeeees</h1>
+    <% include partials/nav.ejs %>
+    <h1>Thanks for talking at us!</h1>
+    <p>Thanks for getting in touch!</p>
+    <p>You contacted <%= data.who %> in the <%= data.where %> department.</p>
+    <p>We will replay to you at <%= data.email %></p>
 
   </body>
 </html>
